@@ -1,5 +1,5 @@
-function modalTabs2 (){
-    
+function modalTabs2() {
+
     // modal tabs 2
 
     const decSlider = document.querySelector('.decoration_slider'),
@@ -12,13 +12,20 @@ function modalTabs2 (){
             item.style.display = 'none';
         });
 
+        decItem.forEach(item => {
+            item.classList.remove('after_click');
+        });
 
+        //decItem.forEach(item => {
+         //   item.classList.remove('');
+       // });
     }
 
     function showDecSlider(i = 0) {
 
         decor[i].style.display = 'block';
-
+        decItem[i].classList.add('after_click');
+       // decItem[i].classList.add('');
     }
 
     hideDecSlider();
@@ -36,4 +43,4 @@ function modalTabs2 (){
         }
     });
 }
-module.exports = modalTabs2;
+export default modalTabs2;

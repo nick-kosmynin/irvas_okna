@@ -4,6 +4,7 @@ function modalTabs1 () {
         const gzSlider = document.querySelector('.glazing_slider'),
         gzBlock = document.querySelectorAll('.glazing_block'),
         gzContent = document.querySelectorAll('.glazing_content');
+        
 
 
     function hideTabContent() {
@@ -11,11 +12,14 @@ function modalTabs1 () {
             item.style.display = 'none';
         });
 
-
+      //gzBlock.forEach(item => {
+       //   item.classList.remove('');
+     // });
     }
 
     function showTabsContent(i = 0) {
         gzContent[i].style.display = 'block';
+       // gzBlock[i].classList.add('');
 
     }
 
@@ -34,4 +38,4 @@ function modalTabs1 () {
         }
     });
 }
-module.exports = modalTabs1;
+export default modalTabs1;

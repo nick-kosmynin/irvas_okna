@@ -40,10 +40,6 @@ function modalCalc (){
             item.style.display = 'none';
         });
     }
-
-
-    
-
     hideBigImg();
     
 
@@ -88,4 +84,4 @@ function modalCalc (){
     //               }
     //               clozeModalCalc3();  
 }
-module.exports =  modalCalc;
+export default modalCalc;

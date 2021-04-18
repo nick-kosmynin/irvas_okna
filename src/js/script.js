@@ -1,17 +1,19 @@
+import forms from './moduls/forms';
+    import modal from './moduls/modal';
+    import modalCalc from './moduls/modalCalc';
+    import modalTabs1 from './moduls/modalTabs1';
+    import modalTabs2 from './moduls/modalTabs2';
+    import timer from './moduls/timer';
+
 window.addEventListener('DOMContentLoaded', () => {
 
-    const forms = require('./moduls/forms'),
-        modal = require('./moduls/modal'),
-        modalCalc = require('./moduls/modalCalc'),
-        modalTabs1 = require('./moduls/modalTabs1'),
-        modalTabs2 = require('./moduls/modalTabs2'),
-        timer = require('./moduls/timer');
+    
 
-forms();
-modal();
-modalCalc();
-modalTabs1();
-modalTabs2();
-timer();
+    forms();
+    modal();
+    modalCalc();
+    modalTabs1();
+    modalTabs2();
+    timer();
 
 });
