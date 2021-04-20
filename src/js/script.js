@@ -11,8 +11,16 @@ window.addEventListener('DOMContentLoaded', () => {
 
     forms();
     modal();
-    modalCalc();
-    modalTabs1();
+
+    modalCalc('.glazing_price_btn','.popup_calc','.popup_calc_close');
+    modalCalc('.popup_calc_button','.popup_calc_profile','.popup_calc_profile_close');
+    modalCalc('.popup_calc_profile_button','.popup_calc_end','.popup_calc_end_close');
+    
+    
+
+    modalTabs1('.glazing_slider','.glazing_block','.glazing_content');
+    modalTabs1('.balcon_icons','.balcon_icons_img ','.big_img >img','do_image_more','inline-block');
+
     modalTabs2();
     timer();
 

@@ -235,13 +235,13 @@ function modal() {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-function modalCalc (){
+function modalCalc (btnSelector, tabSelector, btnCloseSelector){
     
     //modal calc
 
-    const btnCalc = document.querySelector('.glazing_price_btn'),
-        modalCalc = document.querySelector('.popup_calc'),
-        btnCalcCloze = document.querySelector('.popup_calc_close');
+    const btnCalc = document.querySelector(btnSelector,),
+        modalCalc = document.querySelector(tabSelector),
+        btnCalcCloze = document.querySelector(btnCloseSelector);
 
     btnCalc.addEventListener('click', () => {
         modalCalc.classList.add('show');
@@ -265,61 +265,7 @@ function modalCalc (){
         }
     });
 
-    //actions of window 1
-
-    const balcIcons = document.querySelector('.balcon_icons'),
-        balcImg = document.querySelectorAll('.balcon_icons_img'),
-        balcBigImg = document.querySelectorAll('.big_img.text-center > img');
-        
-
-    function hideBigImg() {
-        balcBigImg.forEach(item => {
-            item.style.display = 'none';
-        });
-    }
-    hideBigImg();
-    
-
-
-
-
-    //modal calc part 2
-
-    //   const btnCalc2 = document.querySelector('.popup_calc_button'),
-    //         modalCalc2 = document.querySelector('.popup_calc_profile'),
-    //         btnCalcCloze2 = document.querySelector('.popup_calc_profile_close');
-    //
-    //         btnCalc2.addEventListener('click', () =>{
-    //             modalCalc2.classList.add('show');
-    //             modalCalc2.classList.remove('hide');
-    //         });
-    //
-    //         function clozeModalCalc2 () {
-    //           btnCalcCloze2.addEventListener('click', () =>{
-    //               modalCalc2.classList.add('hide');
-    //               modalCalc2.classList.remove('show');
-    //           });
-    //         }
-    //         clozeModalCalc2();
-    //
-    //         //modal calc part 3
-    //
-    //         const btnCalc3 = document.querySelector('.popup_calc_profile_button'),
-    //               modalCalc3 = document.querySelector('.popup_calc_end'),
-    //               btnCalcCloze3 = document.querySelector('.popup_calc_end_close');
-    //
-    //               btnCalc3.addEventListener('click', () =>{
-    //                   modalCalc3.classList.add('show');
-    //                   modalCalc3.classList.remove('hide');
-    //               });
-    //     
-    //               function clozeModalCalc3 () {
-    //                 btnCalcCloze3.addEventListener('click', () =>{
-    //                     modalCalc3.classList.add('hide');
-    //                     modalCalc3.classList.remove('show');
-    //                 });
-    //               }
-    //               clozeModalCalc3();  
+ 
 }
 /* harmony default export */ __webpack_exports__["default"] = (modalCalc);
 
@@ -334,13 +280,13 @@ function modalCalc (){
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-function modalTabs1 () {
-        // modal tabs 1
+const modalTabs1 = (headerselector, tabSelector, contentSelector,active, display = 'block') => {
+    // modal tabs 1
 
-        const gzSlider = document.querySelector('.glazing_slider'),
-        gzBlock = document.querySelectorAll('.glazing_block'),
-        gzContent = document.querySelectorAll('.glazing_content');
-        
+    const gzSlider = document.querySelector(headerselector),
+        gzBlock = document.querySelectorAll(tabSelector),
+        gzContent = document.querySelectorAll(contentSelector);
+
 
 
     function hideTabContent() {
@@ -348,14 +294,14 @@ function modalTabs1 () {
             item.style.display = 'none';
         });
 
-      //gzBlock.forEach(item => {
-       //   item.classList.remove('');
-     // });
+        gzBlock.forEach(item => {
+            item.classList.remove(active);
+        });
     }
 
     function showTabsContent(i = 0) {
-        gzContent[i].style.display = 'block';
-       // gzBlock[i].classList.add('');
+        gzContent[i].style.display = display;
+          gzBlock[i].classList.add(active);
 
     }
 
@@ -364,7 +310,8 @@ function modalTabs1 () {
 
     gzSlider.addEventListener('click', (event) => {
         const target = event.target;
-        if (target && target.classList.contains('glazing_block')) {
+        if (target && (target.classList.contains(tabSelector.replace(/\./, "")) ||
+                target.parentNode.classList.contains(tabSelector.replace(/\./, "")))) {
             gzBlock.forEach((item, i) => {
                 if (target == item) {
                     hideTabContent();
@@ -373,7 +320,7 @@ function modalTabs1 () {
             });
         }
     });
-}
+};
 /* harmony default export */ __webpack_exports__["default"] = (modalTabs1);
 
 /***/ }),
@@ -534,8 +481,16 @@ window.addEventListener('DOMContentLoaded', () => {
 
     Object(_moduls_forms__WEBPACK_IMPORTED_MODULE_0__["default"])();
     Object(_moduls_modal__WEBPACK_IMPORTED_MODULE_1__["default"])();
-    Object(_moduls_modalCalc__WEBPACK_IMPORTED_MODULE_2__["default"])();
-    Object(_moduls_modalTabs1__WEBPACK_IMPORTED_MODULE_3__["default"])();
+
+    Object(_moduls_modalCalc__WEBPACK_IMPORTED_MODULE_2__["default"])('.glazing_price_btn','.popup_calc','.popup_calc_close');
+    Object(_moduls_modalCalc__WEBPACK_IMPORTED_MODULE_2__["default"])('.popup_calc_button','.popup_calc_profile','.popup_calc_profile_close');
+    Object(_moduls_modalCalc__WEBPACK_IMPORTED_MODULE_2__["default"])('.popup_calc_profile_button','.popup_calc_end','.popup_calc_end_close');
+    
+    
+
+    Object(_moduls_modalTabs1__WEBPACK_IMPORTED_MODULE_3__["default"])('.glazing_slider','.glazing_block','.glazing_content');
+    Object(_moduls_modalTabs1__WEBPACK_IMPORTED_MODULE_3__["default"])('.balcon_icons','.balcon_icons_img ','.big_img >img','do_image_more','inline-block');
+
     Object(_moduls_modalTabs2__WEBPACK_IMPORTED_MODULE_4__["default"])();
     Object(_moduls_timer__WEBPACK_IMPORTED_MODULE_5__["default"])();
 

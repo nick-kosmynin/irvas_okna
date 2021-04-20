@@ -1,10 +1,10 @@
-function modalTabs1 () {
-        // modal tabs 1
+const modalTabs1 = (headerselector, tabSelector, contentSelector,active, display = 'block') => {
+    // modal tabs 1
 
-        const gzSlider = document.querySelector('.glazing_slider'),
-        gzBlock = document.querySelectorAll('.glazing_block'),
-        gzContent = document.querySelectorAll('.glazing_content');
-        
+    const gzSlider = document.querySelector(headerselector),
+        gzBlock = document.querySelectorAll(tabSelector),
+        gzContent = document.querySelectorAll(contentSelector);
+
 
 
     function hideTabContent() {
@@ -12,14 +12,14 @@ function modalTabs1 () {
             item.style.display = 'none';
         });
 
-      //gzBlock.forEach(item => {
-       //   item.classList.remove('');
-     // });
+        gzBlock.forEach(item => {
+            item.classList.remove(active);
+        });
     }
 
     function showTabsContent(i = 0) {
-        gzContent[i].style.display = 'block';
-       // gzBlock[i].classList.add('');
+        gzContent[i].style.display = display;
+          gzBlock[i].classList.add(active);
 
     }
 
@@ -28,7 +28,8 @@ function modalTabs1 () {
 
     gzSlider.addEventListener('click', (event) => {
         const target = event.target;
-        if (target && target.classList.contains('glazing_block')) {
+        if (target && (target.classList.contains(tabSelector.replace(/\./, "")) ||
+                target.parentNode.classList.contains(tabSelector.replace(/\./, "")))) {
             gzBlock.forEach((item, i) => {
                 if (target == item) {
                     hideTabContent();
@@ -37,5 +38,5 @@ function modalTabs1 () {
             });
         }
     });
-}
+};
 export default modalTabs1;
