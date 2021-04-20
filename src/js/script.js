@@ -4,6 +4,7 @@ import forms from './moduls/forms';
     import modalTabs1 from './moduls/modalTabs1';
     import modalTabs2 from './moduls/modalTabs2';
     import timer from './moduls/timer';
+    import images from './moduls/images';
 
 window.addEventListener('DOMContentLoaded', () => {
 
@@ -23,5 +24,6 @@ window.addEventListener('DOMContentLoaded', () => {
 
     modalTabs2();
     timer();
+    images();
 
 });

@@ -156,6 +156,53 @@ function forms() {
 
 /***/ }),
 
+/***/ "./src/js/moduls/images.js":
+/*!*********************************!*\
+  !*** ./src/js/moduls/images.js ***!
+  \*********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+const images = () => {
+    const imgPopup = document.createElement('div'),
+        workSection = document.querySelector('.works'),
+        bigImage = document.createElement('img');
+
+
+    imgPopup.classList.add('popup');
+    workSection.appendChild(imgPopup);
+
+    imgPopup.style.justifyContent = 'center';
+    imgPopup.style.alignItems = 'center';
+    imgPopup.style.display = 'none';
+
+    imgPopup.appendChild(bigImage);
+
+    workSection.addEventListener('click', (e) => {
+        e.preventDefault();
+
+        let target = e.target;
+
+        if (target && target.classList.contains('preview')){
+            imgPopup.style.display = 'flex';
+            const path = target.parentNode.getAttribute('href');
+            bigImage.setAttribute('src',path);
+        }
+
+        if(target && target.matches('div.popup')){
+            imgPopup.style.display = 'none';
+        }
+    });
+};
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = (images);
+
+/***/ }),
+
 /***/ "./src/js/moduls/modal.js":
 /*!********************************!*\
   !*** ./src/js/moduls/modal.js ***!
@@ -241,7 +288,8 @@ function modalCalc (btnSelector, tabSelector, btnCloseSelector){
 
     const btnCalc = document.querySelector(btnSelector,),
         modalCalc = document.querySelector(tabSelector),
-        btnCalcCloze = document.querySelector(btnCloseSelector);
+        btnCalcCloze = document.querySelector(btnCloseSelector),
+        windows = document.querySelectorAll('[data-calc]');
 
     btnCalc.addEventListener('click', () => {
         modalCalc.classList.add('show');
@@ -251,6 +299,11 @@ function modalCalc (btnSelector, tabSelector, btnCloseSelector){
 
     function clozeModalCalc() {
         btnCalcCloze.addEventListener('click', () => {
+            //закрытие всех окон
+            windows.forEach(item =>{
+                item.style.display = 'none';
+            });
+
             modalCalc.classList.add('hide');
             modalCalc.classList.remove('show');
             document.body.style.overflow = '';
@@ -260,6 +313,12 @@ function modalCalc (btnSelector, tabSelector, btnCloseSelector){
 
     modalCalc.addEventListener('click', (e) => {
         if (e.target === modalCalc) {
+            //закрытие всех окон
+            windows.forEach(item =>{
+                item.style.display = 'none';
+            });
+
+
             modalCalc.classList.add('hide');
             modalCalc.classList.remove('show');
         }
@@ -468,7 +527,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _moduls_modalTabs1__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./moduls/modalTabs1 */ "./src/js/moduls/modalTabs1.js");
 /* harmony import */ var _moduls_modalTabs2__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./moduls/modalTabs2 */ "./src/js/moduls/modalTabs2.js");
 /* harmony import */ var _moduls_timer__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./moduls/timer */ "./src/js/moduls/timer.js");
+/* harmony import */ var _moduls_images__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./moduls/images */ "./src/js/moduls/images.js");
 
+    
     
     
     
@@ -493,6 +554,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
     Object(_moduls_modalTabs2__WEBPACK_IMPORTED_MODULE_4__["default"])();
     Object(_moduls_timer__WEBPACK_IMPORTED_MODULE_5__["default"])();
+    Object(_moduls_images__WEBPACK_IMPORTED_MODULE_6__["default"])();
 
 });
 
