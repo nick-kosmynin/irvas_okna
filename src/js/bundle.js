@@ -291,18 +291,21 @@ function modalCalc() {
             closeModal = document.querySelector(btnCloseSelector),
             windows = document.querySelectorAll('[data-calc]');
 
-        triggerBtn.forEach(item => {
-
-             //закрытие окон
-             windows.forEach(item => {
-                item.style.display = 'none';
+            triggerBtn.forEach(item => {
+                item.addEventListener('click', (e) => {
+                    if (e.target) {
+                        e.preventDefault();
+                    }
+    
+                    windows.forEach(item => {
+                        item.style.display = 'none';
+                    });
+        
+                    modalWind.style.display = "block";
+                   // document.body.style.overflow = "hidden";
+                    // document.body.classList.add('modal-open');
+                });
             });
-
-
-            item.addEventListener('click', () => {
-                modalWind.style.display = 'block';
-            });
-        });
 
 
 
