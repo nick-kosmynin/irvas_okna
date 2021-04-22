@@ -1,45 +1,64 @@
-function modalCalc (btnSelector, tabSelector, btnCloseSelector){
-    
-    //modal calc
+function modalCalc() {
+    function bindModal(btnSelector, tabSelector, btnCloseSelector, closeClickOverlay = true) {
 
-    const btnCalc = document.querySelector(btnSelector,),
-        modalCalc = document.querySelector(tabSelector),
-        btnCalcCloze = document.querySelector(btnCloseSelector),
-        windows = document.querySelectorAll('[data-calc]');
+        const triggerBtn = document.querySelectorAll(btnSelector),
+            modalWind = document.querySelector(tabSelector),
+            closeModal = document.querySelector(btnCloseSelector),
+            windows = document.querySelectorAll('[data-calc]');
 
-    btnCalc.addEventListener('click', () => {
-        modalCalc.classList.add('show');
-        modalCalc.classList.remove('hide');
-        document.body.style.overflow = 'hidden';
-    });
+        triggerBtn.forEach(item => {
 
-    function clozeModalCalc() {
-        btnCalcCloze.addEventListener('click', () => {
-            //закрытие всех окон
-            windows.forEach(item =>{
+             //закрытие окон
+             windows.forEach(item => {
                 item.style.display = 'none';
             });
 
-            modalCalc.classList.add('hide');
-            modalCalc.classList.remove('show');
-            document.body.style.overflow = '';
+
+            item.addEventListener('click', () => {
+                modalWind.style.display = 'block';
+            });
+        });
+
+
+
+        closeModal.addEventListener('click', () => {
+            //закрытие окон
+            windows.forEach(item => {
+                item.style.display = 'none';
+            });
+
+            modalWind.style.display = 'none';
+        });
+
+
+
+        modalWind.addEventListener('click', (e) => {
+
+            if (e.target === modalWind && closeClickOverlay) {
+                //закрытие окон
+                windows.forEach(item => {
+                    item.style.display = 'none';
+                });
+
+                modalWind.style.display = 'none';
+            }
         });
     }
-    clozeModalCalc();
-
-    modalCalc.addEventListener('click', (e) => {
-        if (e.target === modalCalc) {
-            //закрытие всех окон
-            windows.forEach(item =>{
-                item.style.display = 'none';
-            });
 
 
-            modalCalc.classList.add('hide');
-            modalCalc.classList.remove('show');
-        }
-    });
 
- 
+    bindModal('.popup_calc_btn', '.popup_calc', '.popup_calc_close');
+    bindModal('.popup_calc_button', '.popup_calc_profile', '.popup_calc_profile_close', false);
+    bindModal('.popup_calc_profile_button', '.popup_calc_end', '.popup_calc_end_close', false);
+
+
+
+
 }
+
+
+
+
+
+
 export default modalCalc;
